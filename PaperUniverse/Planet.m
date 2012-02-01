@@ -11,12 +11,15 @@
 @implementation Planet
 
 @synthesize radius = _radius;
+@synthesize maxOrbitRadius = _maxOrbitRadius, minOrbitRadius = _minOrbitRadius;
+@synthesize orbitalAcceleration;
 
 -(id) init {
     if (self = [super init]) {
         self.isStatic = YES;
-        self.gravity = 10;
+        self.gravity = 100;
         self.mass = 100;
+        self.orbitalAcceleration = 5;
     }
     
     return self;

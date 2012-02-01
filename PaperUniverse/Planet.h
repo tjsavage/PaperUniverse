@@ -11,5 +11,8 @@
 @interface Planet : SpaceObject
 
 @property (nonatomic, assign) double radius;
+@property (nonatomic, assign) double maxOrbitRadius;
+@property (nonatomic, assign) double minOrbitRadius;
+@property (nonatomic, assign) double orbitalAcceleration;
 
 @end

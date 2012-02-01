@@ -9,15 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@class GameObjectManager;
+@class SpaceObjectManager, PhysicsManager, PhysicsManagerOrbiting;
 
 @interface GameLayer : CCLayer {
     
 }
 
 @property (nonatomic, retain) CCSprite *background;
-@property (nonatomic, retain) GameObjectManager *gameObjectManager;
+@property (nonatomic, retain) SpaceObjectManager *spaceObjectManager;
 @property (nonatomic, assign) CGPoint centerLocation;
+@property (nonatomic, assign) BOOL isTouching;
+@property (nonatomic, retain) PhysicsManagerOrbiting *orbitPhysics;
+
+@property (nonatomic, assign) PhysicsManager *currPhysicsManager;
 
 +(CCScene *) scene;
 

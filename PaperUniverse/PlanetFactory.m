@@ -45,6 +45,9 @@ static PlanetFactory *sharedInstance;
     Planet *planet = [[[Planet alloc] initWithFile:@"Planet1.png"] autorelease];
     planet.radius = 100;
     
+    planet.maxOrbitRadius = 200;
+    planet.minOrbitRadius = 120;
+    
     return planet;
 }
 

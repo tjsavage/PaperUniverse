@@ -13,13 +13,15 @@
 		8A45940B14D7B47100D7BF76 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45940A14D7B47000D7BF76 /* GameObject.m */; };
 		8A45940E14D7B56500D7BF76 /* SpaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45940D14D7B56400D7BF76 /* SpaceObject.m */; };
 		8A45941414D7BC8000D7BF76 /* Spaceship.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45941314D7BC8000D7BF76 /* Spaceship.m */; };
-		8A45941714D7BEFC00D7BF76 /* GameObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45941614D7BEFC00D7BF76 /* GameObjectManager.m */; };
+		8A45941714D7BEFC00D7BF76 /* SpaceObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45941614D7BEFC00D7BF76 /* SpaceObjectManager.m */; };
 		8A45941A14D7C21A00D7BF76 /* PhysicsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45941914D7C21900D7BF76 /* PhysicsManager.m */; };
 		8A45941C14D7D0B400D7BF76 /* RocketShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A45941B14D7D0B400D7BF76 /* RocketShip.png */; };
 		8A45942014D7D50D00D7BF76 /* RocketShipSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A45941F14D7D50D00D7BF76 /* RocketShipSmall.png */; };
 		8A45942314D7D58800D7BF76 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45942214D7D58700D7BF76 /* Planet.m */; };
 		8A7E104C14D7D6F300DB5BFF /* PlanetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */; };
 		8A7E104E14D7DCE100DB5BFF /* Planet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E104D14D7DCE100DB5BFF /* Planet1.png */; };
+		8A7E105114D893BB00DB5BFF /* PhysicsManagerOrbiting.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E105014D893BB00DB5BFF /* PhysicsManagerOrbiting.m */; };
+		8A7E105414D8C68D00DB5BFF /* PhysicsManagerFloating.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E105314D8C68D00DB5BFF /* PhysicsManagerFloating.m */; };
 		8AAB049914CDE97C00C3C5FC /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB049814CDE97C00C3C5FC /* MenuLayer.m */; };
 		8AAB04A114CDEC4200C3C5FC /* playGameButton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AAB049F14CDEC4200C3C5FC /* playGameButton_selected.png */; };
 		8AAB04A214CDEC4200C3C5FC /* playGameButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AAB04A014CDEC4200C3C5FC /* playGameButton.png */; };
@@ -179,8 +181,8 @@
 		8A45940D14D7B56400D7BF76 /* SpaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceObject.m; sourceTree = "<group>"; };
 		8A45941214D7BC7F00D7BF76 /* Spaceship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spaceship.h; sourceTree = "<group>"; };
 		8A45941314D7BC8000D7BF76 /* Spaceship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spaceship.m; sourceTree = "<group>"; };
-		8A45941514D7BEFC00D7BF76 /* GameObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectManager.h; sourceTree = "<group>"; };
-		8A45941614D7BEFC00D7BF76 /* GameObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectManager.m; sourceTree = "<group>"; };
+		8A45941514D7BEFC00D7BF76 /* SpaceObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceObjectManager.h; sourceTree = "<group>"; };
+		8A45941614D7BEFC00D7BF76 /* SpaceObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceObjectManager.m; sourceTree = "<group>"; };
 		8A45941814D7C21900D7BF76 /* PhysicsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsManager.h; sourceTree = "<group>"; };
 		8A45941914D7C21900D7BF76 /* PhysicsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsManager.m; sourceTree = "<group>"; };
 		8A45941B14D7D0B400D7BF76 /* RocketShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RocketShip.png; sourceTree = "<group>"; };
@@ -190,6 +192,10 @@
 		8A7E104A14D7D6F300DB5BFF /* PlanetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetFactory.h; sourceTree = "<group>"; };
 		8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanetFactory.m; sourceTree = "<group>"; };
 		8A7E104D14D7DCE100DB5BFF /* Planet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Planet1.png; sourceTree = "<group>"; };
+		8A7E104F14D893BB00DB5BFF /* PhysicsManagerOrbiting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsManagerOrbiting.h; sourceTree = "<group>"; };
+		8A7E105014D893BB00DB5BFF /* PhysicsManagerOrbiting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsManagerOrbiting.m; sourceTree = "<group>"; };
+		8A7E105214D8C68C00DB5BFF /* PhysicsManagerFloating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsManagerFloating.h; path = ../PhysicsManagerFloating.h; sourceTree = "<group>"; };
+		8A7E105314D8C68D00DB5BFF /* PhysicsManagerFloating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhysicsManagerFloating.m; path = ../PhysicsManagerFloating.m; sourceTree = "<group>"; };
 		8AAB049714CDE97C00C3C5FC /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
 		8AAB049814CDE97C00C3C5FC /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 		8AAB049F14CDEC4200C3C5FC /* playGameButton_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playGameButton_selected.png; path = Resources/playGameButton_selected.png; sourceTree = "<group>"; };
@@ -559,16 +565,20 @@
 				8AF829C014CD5824006449F0 /* HelloWorldLayer.m */,
 				8A45940914D7B47000D7BF76 /* GameObject.h */,
 				8A45940A14D7B47000D7BF76 /* GameObject.m */,
-				8A45941514D7BEFC00D7BF76 /* GameObjectManager.h */,
-				8A45941614D7BEFC00D7BF76 /* GameObjectManager.m */,
 				8A45941814D7C21900D7BF76 /* PhysicsManager.h */,
 				8A45941914D7C21900D7BF76 /* PhysicsManager.m */,
+				8A7E104F14D893BB00DB5BFF /* PhysicsManagerOrbiting.h */,
+				8A7E105014D893BB00DB5BFF /* PhysicsManagerOrbiting.m */,
+				8A7E105214D8C68C00DB5BFF /* PhysicsManagerFloating.h */,
+				8A7E105314D8C68D00DB5BFF /* PhysicsManagerFloating.m */,
 				8A45942114D7D58600D7BF76 /* Planet.h */,
 				8A45942214D7D58700D7BF76 /* Planet.m */,
 				8A7E104A14D7D6F300DB5BFF /* PlanetFactory.h */,
 				8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */,
 				8A45940C14D7B56400D7BF76 /* SpaceObject.h */,
 				8A45940D14D7B56400D7BF76 /* SpaceObject.m */,
+				8A45941514D7BEFC00D7BF76 /* SpaceObjectManager.h */,
+				8A45941614D7BEFC00D7BF76 /* SpaceObjectManager.m */,
 				8A45941214D7BC7F00D7BF76 /* Spaceship.h */,
 				8A45941314D7BC8000D7BF76 /* Spaceship.m */,
 				8AF829C214CD5824006449F0 /* GameConfig.h */,
@@ -1231,10 +1241,12 @@
 				8A45940B14D7B47100D7BF76 /* GameObject.m in Sources */,
 				8A45940E14D7B56500D7BF76 /* SpaceObject.m in Sources */,
 				8A45941414D7BC8000D7BF76 /* Spaceship.m in Sources */,
-				8A45941714D7BEFC00D7BF76 /* GameObjectManager.m in Sources */,
+				8A45941714D7BEFC00D7BF76 /* SpaceObjectManager.m in Sources */,
 				8A45941A14D7C21A00D7BF76 /* PhysicsManager.m in Sources */,
 				8A45942314D7D58800D7BF76 /* Planet.m in Sources */,
 				8A7E104C14D7D6F300DB5BFF /* PlanetFactory.m in Sources */,
+				8A7E105114D893BB00DB5BFF /* PhysicsManagerOrbiting.m in Sources */,
+				8A7E105414D8C68D00DB5BFF /* PhysicsManagerFloating.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

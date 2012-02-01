@@ -6,13 +6,15 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "GameObjectManager.h"
+#import "SpaceObjectManager.h"
 #import "PlanetFactory.h"
 #import "Planet.h"
+#import "Spaceship.h"
 
-@implementation GameObjectManager
 
-@synthesize gameObjects = _gameObjects, player = _player;
+@implementation SpaceObjectManager
+
+@synthesize spaceObjects = _spaceObjects, player = _player;
 @synthesize lastPlanet = _lastPlanet;
 
 - (id) init {
@@ -28,14 +30,14 @@
         self.player = [[Spaceship alloc] initWithFile:@"RocketShipSmall.png"];
         [self.player setLocation:CGPointMake(-140, 0)];
         
-        self.gameObjects = [NSMutableArray arrayWithObject:self.player];
+        self.spaceObjects = [NSMutableArray arrayWithObject:self.player];
     }
     
     return self;
 }
 
 -(void) updatePositionsForCenter:(CGPoint)center {
-    for(SpaceObject *obj in self.gameObjects) {
+    for(SpaceObject *obj in self.spaceObjects) {
         obj.position = CGPointMake(obj.location.x - center.x + 240, obj.location.y - center.y + 160);
     }
 }
@@ -50,7 +52,7 @@
     }
 
     
-    [self.gameObjects addObject:newPlanet];
+    [self.spaceObjects addObject:newPlanet];
     
     self.lastPlanet = newPlanet;
     

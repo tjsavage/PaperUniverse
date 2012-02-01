@@ -15,6 +15,7 @@
         self.isStatic = NO;
         self.gravity = 0;
         self.mass = 10;
+        self.orientation = M_PI / 2;
     }
     
     return self;

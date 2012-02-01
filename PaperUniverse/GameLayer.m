@@ -5,16 +5,22 @@
 //  Created by Taylor Savage on 1/30/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
+#import "CCTouchDispatcher.h"
 
 #import "GameLayer.h"
-#import "GameObjectManager.h"
+#import "SpaceObjectManager.h"
+#import "Spaceship.h"
 #import "Planet.h"
+#import "PhysicsManager.h"
+#import "PhysicsManagerOrbiting.h"
 
 @implementation GameLayer
 
 @synthesize background = _background;
-@synthesize gameObjectManager = _gameObjectManager;
+@synthesize spaceObjectManager = _spaceObjectManager;
 @synthesize centerLocation = _centerLocation;
+@synthesize isTouching = _isTouching;
+@synthesize currPhysicsManager = _currPhysicsManager, orbitPhysics = _orbitPhysics;
 
 +(CCScene *) scene
 {
@@ -38,15 +44,19 @@
         [self.background setPosition:ccp(240, 160)];
         [self addChild:self.background z:0];
         
-        self.gameObjectManager = [[GameObjectManager alloc] initWithDefaultPlayer];
+        self.isTouchEnabled = YES;
         
-        Planet *firstPlanet = [self.gameObjectManager addPlanet];
+        self.spaceObjectManager = [[SpaceObjectManager alloc] initWithDefaultPlayer];
+        self.orbitPhysics = [[PhysicsManagerOrbiting alloc] init];
+        
+        Planet *firstPlanet = [self.spaceObjectManager addPlanet];
         
         self.centerLocation = CGPointMake(0, 0);
         
-        [self.gameObjectManager updatePositionsForCenter:self.centerLocation];
+        [self.spaceObjectManager updatePositionsForCenter:self.centerLocation];
         
-        [self addChild:self.gameObjectManager.player.sprite z:1];
+        
+        [self addChild:self.spaceObjectManager.player.sprite z:1];
         [self addChild:firstPlanet.sprite z:1];
         
         [self schedule:@selector(tick:)];
@@ -55,8 +65,24 @@
     return self;
 }
 
+-(void) registerWithTouchDispatcher
+{
+	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+}
+
+-(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    self.isTouching = YES;
+    self.currPhysicsManager = self.orbitPhysics;
+    return YES;
+}
+
+-(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    self.isTouching = NO;
+}
+
 - (void)tick:(ccTime)dt {
-    [self.gameObjectManager updatePositionsForCenter:self.centerLocation];
+    [self.currPhysicsManager computeNextLocation:self.spaceObjectManager.player withObjects:self.spaceObjectManager.spaceObjects afterTimeInterval:dt];
+    [self.spaceObjectManager updatePositionsForCenter:self.centerLocation];
 }
 
 @end

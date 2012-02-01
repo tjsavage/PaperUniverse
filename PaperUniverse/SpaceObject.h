@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) CGPoint position, location; //Position represents a point on screen, location maps to a point in our infinite space.
 @property (nonatomic, assign) CGPoint velocity;
+@property (nonatomic, assign) double angularVelocity;
 @property (nonatomic, assign) double orientation;
 @property (nonatomic, assign) double mass, gravity;
 @property (nonatomic, assign) bool isStatic;

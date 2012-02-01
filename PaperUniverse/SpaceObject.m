@@ -10,7 +10,7 @@
 
 @implementation SpaceObject
 
-@synthesize position = _position, location = _location, velocity = _velocity, orientation = _orientation, mass = _mass, gravity = _gravity;
+@synthesize position = _position, location = _location, velocity = _velocity, angularVelocity = _angularVelocity, orientation = _orientation, mass = _mass, gravity = _gravity;
 @synthesize isStatic = _isStatic;
 @synthesize sprite = _sprite;
 
@@ -39,6 +39,11 @@
 -(void) setPosition:(CGPoint)position {
     _position = position;
     [self.sprite setPosition:position];
+}
+
+-(void) setOrientation:(double)orientation {
+    _orientation = orientation;
+    [self.sprite setRotation:-orientation * 180 / M_PI];
 }
 
 -(void) setScaleX:(double)newWidth Y:(double)newHeight {

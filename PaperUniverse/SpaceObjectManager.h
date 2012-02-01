@@ -1,5 +1,5 @@
 //
-//  GameObjectManager.h
+//  SpaceObjectManager.h
 //  PaperUniverse
 //
 //  Created by Taylor Savage on 1/30/12.
@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameObject.h"
-#import "Spaceship.h"
 
-@class Planet;
+@class Planet, Spaceship;
 
-@interface GameObjectManager : NSObject
+@interface SpaceObjectManager : NSObject
 
 @property (nonatomic, retain) Spaceship *player;
-@property (nonatomic, retain) NSMutableArray *gameObjects;
+@property (nonatomic, retain) NSMutableArray *spaceObjects;
 @property (nonatomic, assign) Planet *lastPlanet;
 
 -(id) init;
