@@ -46,7 +46,7 @@ static PlanetFactory *sharedInstance;
     planet.radius = 100;
     
     planet.maxOrbitRadius = 800;
-    planet.minOrbitRadius = 120;
+    planet.minOrbitRadius = 70;
     
     return planet;
 }

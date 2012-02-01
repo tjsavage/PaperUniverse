@@ -14,6 +14,8 @@
 @interface PhysicsManagerOrbiting ()
 
 - (void)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
+- (void)simpleUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
+- (void)pullLockUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
 
 @end
 
@@ -36,7 +38,38 @@
 }
 
 - (void)updateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
-    [self gravityUpdateVelocityVector:object withGravityObject:gravityObject];
+    [self pullLockUpdateVelocityVector:object withGravityObject:gravityObject];
+}
+
+- (void)simpleUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+    double distance = ccpDistance(gravityObject.location, object.location);
+    if (distance > gravityObject.maxOrbitRadius){
+        return;
+    }
+    
+    CGPoint distanceVector = ccpNormalize(ccpSub(object.location, gravityObject.location));
+    CGPoint orbitVelocity = ccpNormalize([self closestOrthogonalVectorOf:distanceVector toVector:object.velocity]);
+    
+    object.velocity = ccpMult(orbitVelocity, ccpLength(object.velocity));
+    
+}
+
+- (void)pullLockUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+    double distance = ccpDistance(gravityObject.location, object.location);
+    if (distance > gravityObject.maxOrbitRadius){
+        return;
+    }
+    
+    CGPoint distanceVector = ccpNormalize(ccpSub(object.location, gravityObject.location));
+    CGPoint orbitVelocity = ccpNormalize([self closestOrthogonalVectorOf:distanceVector toVector:object.velocity]);
+    CGPoint newVelocity = ccpMult(ccpAdd(ccpNormalize(object.velocity), orbitVelocity), .96);
+    
+    double pullVectorMagnitude = MAX((distance - gravityObject.minOrbitRadius) / 1000, 0);
+    CGPoint pullVector = ccpMult(distanceVector, -pullVectorMagnitude);
+    
+    CGPoint newVector = ccpNormalize(ccpAdd(pullVector, newVelocity));
+    
+    object.velocity = ccpMult(newVector, ccpLength(object.velocity));
 }
 
 - (void)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {

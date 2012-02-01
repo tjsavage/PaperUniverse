@@ -50,6 +50,7 @@
         self.spaceObjectManager = [[SpaceObjectManager alloc] initWithDefaultPlayer];
         self.orbitPhysics = [[PhysicsManagerOrbiting alloc] init];
         self.floatingPhysics = [[PhysicsManagerFloating alloc] init];
+        self.currPhysicsManager = self.floatingPhysics;
         
         Planet *firstPlanet = [self.spaceObjectManager addPlanet];
         [self.spaceObjectManager addPlanet];

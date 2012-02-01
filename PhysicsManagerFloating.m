@@ -8,11 +8,16 @@
 
 #import "PhysicsManagerFloating.h"
 #import "SpaceObject.h"
+#import "Spaceship.h"
 
 @implementation PhysicsManagerFloating
 
 - (void)computeNextLocation:(SpaceObject *)object withObjectManager:(SpaceObjectManager *)objectManager afterTimeInterval:(double)dt {
     object.orientation += object.angularVelocity;
+    
+    if ([object isMemberOfClass:[Spaceship class]]) {
+        object.orientation = ccpToAngle(object.velocity);
+    }
     
     object.location = [self vectorAdd:object.location to:[self scalarMultiply:object.velocity by:dt]];
 }

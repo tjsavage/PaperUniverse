@@ -33,7 +33,8 @@
 -(id) initWithDefaultPlayer {
     if (self = [self init]) {
         self.player = [[Spaceship alloc] initWithFile:@"RocketShipSmall.png"];
-        [self.player setLocation:CGPointMake(-140, 0)];
+        [self.player setLocation:CGPointMake(-540, 0)];
+        [self.player setVelocity:CGPointMake(400, 0)];
         
         self.spaceObjects = [NSMutableArray arrayWithObject:self.player];
     }
