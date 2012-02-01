@@ -19,8 +19,8 @@
 		8A45942014D7D50D00D7BF76 /* RocketShipSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A45941F14D7D50D00D7BF76 /* RocketShipSmall.png */; };
 		8A45942314D7D58800D7BF76 /* Planet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45942214D7D58700D7BF76 /* Planet.m */; };
 		8A7380BD14D8FBEB0091D6BD /* GravityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380BC14D8FBEB0091D6BD /* GravityObject.m */; };
-		8A7380C014D917BE0091D6BD /* BackgroundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380BF14D917BE0091D6BD /* BackgroundManager.m */; };
 		8A7380C314D918080091D6BD /* BackgroundTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380C214D918080091D6BD /* BackgroundTile.m */; };
+		8A7380C614D91A810091D6BD /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380C514D91A810091D6BD /* BackgroundLayer.m */; };
 		8A7E104C14D7D6F300DB5BFF /* PlanetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */; };
 		8A7E104E14D7DCE100DB5BFF /* Planet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E104D14D7DCE100DB5BFF /* Planet1.png */; };
 		8A7E105114D893BB00DB5BFF /* PhysicsManagerOrbiting.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E105014D893BB00DB5BFF /* PhysicsManagerOrbiting.m */; };
@@ -194,10 +194,10 @@
 		8A45942214D7D58700D7BF76 /* Planet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Planet.m; sourceTree = "<group>"; };
 		8A7380BB14D8FBEB0091D6BD /* GravityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GravityObject.h; sourceTree = "<group>"; };
 		8A7380BC14D8FBEB0091D6BD /* GravityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GravityObject.m; sourceTree = "<group>"; };
-		8A7380BE14D917BD0091D6BD /* BackgroundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundManager.h; sourceTree = "<group>"; };
-		8A7380BF14D917BE0091D6BD /* BackgroundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundManager.m; sourceTree = "<group>"; };
 		8A7380C114D918070091D6BD /* BackgroundTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTile.h; sourceTree = "<group>"; };
 		8A7380C214D918080091D6BD /* BackgroundTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTile.m; sourceTree = "<group>"; };
+		8A7380C414D91A800091D6BD /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
+		8A7380C514D91A810091D6BD /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		8A7E104A14D7D6F300DB5BFF /* PlanetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetFactory.h; sourceTree = "<group>"; };
 		8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanetFactory.m; sourceTree = "<group>"; };
 		8A7E104D14D7DCE100DB5BFF /* Planet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Planet1.png; sourceTree = "<group>"; };
@@ -564,8 +564,8 @@
 			children = (
 				8AF829B914CD5824006449F0 /* AppDelegate.h */,
 				8AF829BA14CD5824006449F0 /* AppDelegate.m */,
-				8A7380BE14D917BD0091D6BD /* BackgroundManager.h */,
-				8A7380BF14D917BE0091D6BD /* BackgroundManager.m */,
+				8A7380C414D91A800091D6BD /* BackgroundLayer.h */,
+				8A7380C514D91A810091D6BD /* BackgroundLayer.m */,
 				8A7380C114D918070091D6BD /* BackgroundTile.h */,
 				8A7380C214D918080091D6BD /* BackgroundTile.m */,
 				8AF829BC14CD5824006449F0 /* RootViewController.h */,
@@ -1263,8 +1263,8 @@
 				8A7E105114D893BB00DB5BFF /* PhysicsManagerOrbiting.m in Sources */,
 				8A7E105414D8C68D00DB5BFF /* PhysicsManagerFloating.m in Sources */,
 				8A7380BD14D8FBEB0091D6BD /* GravityObject.m in Sources */,
-				8A7380C014D917BE0091D6BD /* BackgroundManager.m in Sources */,
 				8A7380C314D918080091D6BD /* BackgroundTile.m in Sources */,
+				8A7380C614D91A810091D6BD /* BackgroundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

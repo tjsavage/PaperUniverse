@@ -14,10 +14,11 @@
 #import "PhysicsManager.h"
 #import "PhysicsManagerOrbiting.h"
 #import "PhysicsManagerFloating.h"
+#import "BackgroundLayer.h"
 
 @implementation GameLayer
 
-@synthesize background = _background;
+@synthesize backgroundLayer = _backgroundLayer;
 @synthesize spaceObjectManager = _spaceObjectManager;
 @synthesize centerLocation = _centerLocation;
 @synthesize isTouching = _isTouching;
@@ -41,9 +42,8 @@
 - (id)init
 {
     if(self=[super init]) {        
-        self.background = [CCSprite spriteWithFile:@"Background.png" rect:CGRectMake(0, 0, 480, 320)];
-        [self.background setPosition:ccp(240, 160)];
-        [self addChild:self.background z:0];
+        self.backgroundLayer = [[BackgroundLayer alloc] init];
+        [self addChild:self.backgroundLayer z:0];
         
         self.isTouchEnabled = YES;
         
@@ -120,7 +120,7 @@
     [self.currPhysicsManager computeNextLocation:self.spaceObjectManager.player withObjectManager:self.spaceObjectManager afterTimeInterval:dt];
     [self.spaceObjectManager updatePositionsForCenter:self.centerLocation];
 
-    [self adjustScaleForCenterLocation:self.spaceObjectManager.player.location];
+    [self adjustScaleForCenterLocation:self.spaceObjectManager.activePlanet.location];
     
 }
 

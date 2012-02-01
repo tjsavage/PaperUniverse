@@ -11,6 +11,12 @@
 #import "Planet.h"
 #import "SpaceObjectManager.h"
 
+@interface PhysicsManagerOrbiting ()
+
+- (void)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
+
+@end
+
 @implementation PhysicsManagerOrbiting
 
 @synthesize gravityConstant = _gravityConstant;
@@ -30,6 +36,10 @@
 }
 
 - (void)updateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+    [self gravityUpdateVelocityVector:object withGravityObject:gravityObject];
+}
+
+- (void)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
     double distance = ccpDistance(gravityObject.location, object.location);
     if (distance > gravityObject.maxOrbitRadius){
         return;
@@ -47,7 +57,9 @@
     double speed = MAX(MIN(ccpLength(object.velocity) + gravityObject.orbitalAcceleration, object.maxSpeed), object.minSpeed);
     
     object.velocity = ccpMult(ccpNormalize(newVelocityVectorDirection), speed);
+
 }
+
 
 
 
