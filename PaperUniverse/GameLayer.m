@@ -13,6 +13,7 @@
 #import "Planet.h"
 #import "PhysicsManager.h"
 #import "PhysicsManagerOrbiting.h"
+#import "PhysicsManagerFloating.h"
 
 @implementation GameLayer
 
@@ -20,7 +21,7 @@
 @synthesize spaceObjectManager = _spaceObjectManager;
 @synthesize centerLocation = _centerLocation;
 @synthesize isTouching = _isTouching;
-@synthesize currPhysicsManager = _currPhysicsManager, orbitPhysics = _orbitPhysics;
+@synthesize currPhysicsManager = _currPhysicsManager, orbitPhysics = _orbitPhysics, floatingPhysics = _floatingPhysics;
 
 +(CCScene *) scene
 {
@@ -48,8 +49,10 @@
         
         self.spaceObjectManager = [[SpaceObjectManager alloc] initWithDefaultPlayer];
         self.orbitPhysics = [[PhysicsManagerOrbiting alloc] init];
+        self.floatingPhysics = [[PhysicsManagerFloating alloc] init];
         
         Planet *firstPlanet = [self.spaceObjectManager addPlanet];
+        [self.spaceObjectManager addPlanet];
         
         self.centerLocation = CGPointMake(0, 0);
         
@@ -65,6 +68,36 @@
     return self;
 }
 
+- (void) scale:(CGFloat) newScale scaleCenter:(CGPoint) scaleCenter {
+    // scaleCenter is the point to zoom to.. 
+    // If you are doing a pinch zoom, this should be the center of your pinch.
+    
+    // Get the original center point.
+    CGPoint oldCenterPoint = ccp(scaleCenter.x * self.scale, scaleCenter.y * self.scale); 
+    
+    // Set the scale.
+    self.scale = newScale;
+    
+    // Get the new center point.
+    CGPoint newCenterPoint = ccp(scaleCenter.x * self.scale, scaleCenter.y * self.scale); 
+    
+    // Then calculate the delta.
+    CGPoint centerPointDelta  = ccpSub(oldCenterPoint, newCenterPoint);
+    
+    // Now adjust your layer by the delta.
+    self.position = ccpAdd(self.position, centerPointDelta);
+}
+
+- (void) adjustScaleForCenterLocation:(CGPoint)location {
+    double distanceToCover = ccpDistance(self.spaceObjectManager.player.location,
+                                         self.spaceObjectManager.activePlanet.location);
+    
+    double finalScale = MAX(MIN(130.0 / distanceToCover, 1), .2);
+     
+    self.scale = finalScale;
+    self.centerLocation = location;
+}
+
 -(void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -72,17 +105,23 @@
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     self.isTouching = YES;
+    
     self.currPhysicsManager = self.orbitPhysics;
     return YES;
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     self.isTouching = NO;
+    
+    self.currPhysicsManager = self.floatingPhysics;
 }
 
 - (void)tick:(ccTime)dt {
-    [self.currPhysicsManager computeNextLocation:self.spaceObjectManager.player withObjects:self.spaceObjectManager.spaceObjects afterTimeInterval:dt];
+    [self.currPhysicsManager computeNextLocation:self.spaceObjectManager.player withObjectManager:self.spaceObjectManager afterTimeInterval:dt];
     [self.spaceObjectManager updatePositionsForCenter:self.centerLocation];
+
+    [self adjustScaleForCenterLocation:self.spaceObjectManager.player.location];
+    
 }
 
 @end

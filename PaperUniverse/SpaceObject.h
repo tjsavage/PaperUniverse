@@ -11,19 +11,14 @@
 
 @interface SpaceObject : GameObject
 
-@property (nonatomic, assign) CGPoint position, location; //Position represents a point on screen, location maps to a point in our infinite space.
 @property (nonatomic, assign) CGPoint velocity;
+@property (nonatomic, assign) double maxSpeed, minSpeed;
 @property (nonatomic, assign) double angularVelocity;
-@property (nonatomic, assign) double orientation;
 @property (nonatomic, assign) double mass, gravity;
 @property (nonatomic, assign) bool isStatic;
-@property (nonatomic, retain) CCSprite *sprite;
 
 -(id) init;
--(id) initWithFile:(NSString*)filename;
 
--(void) setScaleX:(double)x Y:(double)y;
--(void) setScale:(double)scale;
 
 
 @end

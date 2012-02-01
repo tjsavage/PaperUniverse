@@ -11,7 +11,7 @@
 
 @implementation PhysicsManagerFloating
 
-- (void)computeNextLocation:(SpaceObject *)object withObjects:(NSArray *)spaceObjects afterTimeInterval:(double)dt {
+- (void)computeNextLocation:(SpaceObject *)object withObjectManager:(SpaceObjectManager *)objectManager afterTimeInterval:(double)dt {
     object.orientation += object.angularVelocity;
     
     object.location = [self vectorAdd:object.location to:[self scalarMultiply:object.velocity by:dt]];

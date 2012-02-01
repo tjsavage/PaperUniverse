@@ -10,9 +10,10 @@
 
 @implementation SpaceObject
 
-@synthesize position = _position, location = _location, velocity = _velocity, angularVelocity = _angularVelocity, orientation = _orientation, mass = _mass, gravity = _gravity;
+@synthesize velocity = _velocity, angularVelocity = _angularVelocity, mass = _mass, gravity = _gravity;
+@synthesize maxSpeed = _maxSpeed, minSpeed = _minSpeed;
 @synthesize isStatic = _isStatic;
-@synthesize sprite = _sprite;
+
 
 -(id) init {
     if (self = [super init]) {
@@ -26,33 +27,6 @@
     }
     
     return self;
-}
-
--(id) initWithFile:(NSString *)filename {
-    if (self = [self init]) {
-        self.sprite = [CCSprite spriteWithFile:filename];
-    }
-    
-    return self;
-}
-
--(void) setPosition:(CGPoint)position {
-    _position = position;
-    [self.sprite setPosition:position];
-}
-
--(void) setOrientation:(double)orientation {
-    _orientation = orientation;
-    [self.sprite setRotation:-orientation * 180 / M_PI];
-}
-
--(void) setScaleX:(double)newWidth Y:(double)newHeight {
-    [self.sprite setScaleX: newWidth / self.sprite.contentSize.width];
-    [self.sprite setScaleY: newHeight / self.sprite.contentSize.height];
-}
-
--(void) setScale:(double)scale {
-    [self.sprite setScale:scale]; 
 }
 
 @end

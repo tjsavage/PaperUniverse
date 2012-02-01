@@ -10,16 +10,20 @@
 
 @class Planet, Spaceship;
 
-@interface SpaceObjectManager : NSObject
+@interface SpaceObjectManager : NSObject {
+    @private
+    int _activePlanetIndex;
+}
 
 @property (nonatomic, retain) Spaceship *player;
-@property (nonatomic, retain) NSMutableArray *spaceObjects;
-@property (nonatomic, assign) Planet *lastPlanet;
+@property (nonatomic, retain) NSMutableArray *spaceObjects, *planets;
+@property (nonatomic, assign) Planet *lastPlanet, *activePlanet;
 
 -(id) init;
 -(id) initWithDefaultPlayer;
 
 -(void) updatePositionsForCenter:(CGPoint)center;
 -(Planet *) addPlanet;
+-(Planet *) closestPlanetToPlayer;
 
 @end

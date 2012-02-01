@@ -7,7 +7,9 @@
 //
 
 #import "PhysicsManagerOrbiting.h"
-#import "SpaceObject.h"
+#import "GravityObject.h"
+#import "Planet.h"
+#import "SpaceObjectManager.h"
 
 @implementation PhysicsManagerOrbiting
 
@@ -15,42 +17,36 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.gravityConstant = .0008;
+        self.gravityConstant = .8;
     }
     return self;
 }
 
-- (void)computeNextLocation:(SpaceObject *)object withObjects:(NSArray *)spaceObjects afterTimeInterval:(double)dt {
-    [self updateVelocityVector:object withObjects:spaceObjects];
+- (void)computeNextLocation:(SpaceObject *)object withObjectManager:(SpaceObjectManager *)objectManager afterTimeInterval:(double)dt {
+    [self updateVelocityVector:object withGravityObject:(GravityObject *)objectManager.activePlanet];
     
-    object.orientation = [self vectorAngle:object.velocity];
-    object.location = [self vectorAdd:object.location to:[self scalarMultiply:object.velocity by:dt]];
+    object.orientation = ccpToAngle(object.velocity);
+    object.location = ccpAdd(object.location, ccpMult(object.velocity, dt));
 }
 
-- (void)updateVelocityVector:(SpaceObject *)object withObjects:(NSArray *)spaceObjects {
-    CGPoint newVelocity = object.velocity;
-    double oldSpeed = [self vectorMagnitude:object.velocity];
-    
-    for (SpaceObject *currObject in spaceObjects) {
-        if (currObject != object) {
-            if (currObject.gravity) {
-                double distance = [self distanceBetween:currObject andObject:object];
-                double gravityForce = currObject.gravity * distance * self.gravityConstant;
-                
-                CGPoint distanceVector = [self unitVector:[self distanceVectorBetween:currObject andObject:object]];
-                NSLog(@"Distance vector: (%f, %f)", distanceVector.x, distanceVector.y);
-                CGPoint gravityVector = [self scalarMultiply:distanceVector by:-1.0 * gravityForce];
-
-                
-                CGPoint newVelocityVectorDirection = [self closestOrthogonalVectorOf:distanceVector toVector:object.velocity];
-                newVelocityVectorDirection = [self vectorAdd:newVelocityVectorDirection to:gravityVector];
-                
-                newVelocity = [self vectorAdd:newVelocity to:newVelocityVectorDirection];
-            }
-        }
+- (void)updateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+    double distance = ccpDistance(gravityObject.location, object.location);
+    if (distance > gravityObject.maxOrbitRadius){
+        return;
     }
-
-    object.velocity = newVelocity;
+    
+    CGPoint distanceVector = ccpNormalize(ccpSub(object.location, gravityObject.location));
+    
+    CGPoint orbitVelocity = ccpNormalize([self closestOrthogonalVectorOf:distanceVector toVector:object.velocity]);
+    CGPoint newVelocityVectorDirection = ccpMult(ccpAdd(object.velocity, orbitVelocity), .5);
+    
+    double gravityForce = gravityObject.gravity * self.gravityConstant * (distance - gravityObject.minOrbitRadius) / gravityObject.maxOrbitRadius;
+    CGPoint gravityVector = ccpMult(distanceVector, -gravityForce);
+    newVelocityVectorDirection = ccpAdd(gravityVector, newVelocityVectorDirection);
+    
+    double speed = MAX(MIN(ccpLength(object.velocity) + gravityObject.orbitalAcceleration, object.maxSpeed), object.minSpeed);
+    
+    object.velocity = ccpMult(ccpNormalize(newVelocityVectorDirection), speed);
 }
 
 

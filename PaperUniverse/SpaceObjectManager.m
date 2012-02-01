@@ -11,15 +11,20 @@
 #import "Planet.h"
 #import "Spaceship.h"
 
+@interface SpaceObjectManager ()
+
+-(int) closestPlanetToPlayerIndex;
+
+@end
 
 @implementation SpaceObjectManager
 
-@synthesize spaceObjects = _spaceObjects, player = _player;
-@synthesize lastPlanet = _lastPlanet;
+@synthesize spaceObjects = _spaceObjects, planets = _planets, player = _player;
+@synthesize lastPlanet = _lastPlanet, activePlanet = _activePlanet;
 
 - (id) init {
     if (self = [super init]) {
-        
+        self.planets = [NSMutableArray array];
     }
     
     return self;
@@ -42,17 +47,59 @@
     }
 }
 
+-(Planet *) activePlanet {
+    if (_activePlanet == NULL) {
+        _activePlanetIndex = self.closestPlanetToPlayerIndex;
+        _activePlanet = [self.planets objectAtIndex:_activePlanetIndex];
+        return _activePlanet;
+    }
+    
+    if (ccpDistance(_activePlanet.location, self.player.location) > _activePlanet.maxOrbitRadius) {
+        _activePlanetIndex++;
+        if (_activePlanetIndex < self.planets.count) {
+            _activePlanet = [self.planets objectAtIndex:_activePlanetIndex];
+        } else {
+            _activePlanetIndex = self.closestPlanetToPlayerIndex;
+            _activePlanet = [self.planets objectAtIndex:_activePlanetIndex];
+            return _activePlanet;
+        }
+        return _activePlanet;
+    }
+    
+    return _activePlanet;
+}
+        
+-(int) closestPlanetToPlayerIndex {
+    double closestDistance = 99999999;
+    int closestPlanetIndex;
+    for(int i = 0; i < self.planets.count; i++) {
+        Planet *planet = [self.planets objectAtIndex:i];
+        double distance = ccpDistance(planet.location, self.player.location);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestPlanetIndex = i;
+        }
+    }
+    
+    return closestPlanetIndex;
+}
+
+-(Planet *) closestPlanetToPlayer {
+    return [self.planets objectAtIndex:self.closestPlanetToPlayerIndex];
+}
+
 -(Planet *) addPlanet {
     Planet *newPlanet = [[PlanetFactory sharedInstance] nextPlanet];
     
     if (self.lastPlanet == NULL) {
         newPlanet.location = CGPointMake(0, 0);
     } else {
-        newPlanet.location = CGPointMake(self.lastPlanet.location.x + 300, self.lastPlanet.location.y + 300);
+        newPlanet.location = CGPointMake(self.lastPlanet.location.x + 3000, self.lastPlanet.location.y);
     }
 
     
     [self.spaceObjects addObject:newPlanet];
+    [self.planets addObject:newPlanet];
     
     self.lastPlanet = newPlanet;
     

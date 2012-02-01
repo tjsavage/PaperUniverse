@@ -16,6 +16,8 @@
         self.gravity = 0;
         self.mass = 10;
         self.orientation = M_PI / 2;
+        self.maxSpeed = 800;
+        self.minSpeed = 100;
     }
     
     return self;

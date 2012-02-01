@@ -8,10 +8,11 @@
 
 #import "PhysicsManager.h"
 
+@class GravityObject;
+
 @interface PhysicsManagerOrbiting : PhysicsManager
 
 @property (nonatomic, assign) double gravityConstant;
 
-- (void)computeNextLocation:(SpaceObject *)object withObjects:(NSArray *)spaceObjects afterTimeInterval:(double)dt;
 
 @end

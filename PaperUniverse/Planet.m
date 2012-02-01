@@ -11,8 +11,6 @@
 @implementation Planet
 
 @synthesize radius = _radius;
-@synthesize maxOrbitRadius = _maxOrbitRadius, minOrbitRadius = _minOrbitRadius;
-@synthesize orbitalAcceleration;
 
 -(id) init {
     if (self = [super init]) {

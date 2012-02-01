@@ -6,13 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SpaceObject.h"
+#import "GravityObject.h"
 
-@interface Planet : SpaceObject
+@interface Planet : GravityObject
 
 @property (nonatomic, assign) double radius;
-@property (nonatomic, assign) double maxOrbitRadius;
-@property (nonatomic, assign) double minOrbitRadius;
-@property (nonatomic, assign) double orbitalAcceleration;
 
 @end

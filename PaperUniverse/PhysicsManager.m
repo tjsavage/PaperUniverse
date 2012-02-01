@@ -7,6 +7,7 @@
 //
 
 #import "PhysicsManager.h"
+#import "SpaceObjectManager.h"
 #import "GameObject.h"
 #import "SpaceObject.h"
 
@@ -20,17 +21,17 @@
     return self;
 }
 
-- (void)updateSpaceObjects:(NSArray *)spaceObjects afterTimeInterval:(double)dt {
-    for (SpaceObject *obj in spaceObjects) {
-        [self computeNextLocation:obj withObjects:spaceObjects afterTimeInterval:dt];
+- (void)updateSpaceObjects:(SpaceObjectManager *)objectManager afterTimeInterval:(double)dt {
+    for (SpaceObject *obj in objectManager.spaceObjects) {
+        [self computeNextLocation:obj withObjectManager:objectManager afterTimeInterval:dt];
     }
 }
 
--(void) computeNextLocation:(SpaceObject *)object withObjects:(NSArray *)spaceObjects afterTimeInterval:(double)dt {
+-(void) computeNextLocation:(SpaceObject *)object withObjectManager:(SpaceObjectManager *)objectManager afterTimeInterval:(double)dt {
     
 }
 
-- (void)updateVelocityVector:(SpaceObject *)object withObjects:(NSArray *)spaceObjects {
+- (void)updateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
     
 }
 
@@ -44,7 +45,7 @@
 
 - (CGPoint)closestOrthogonalVectorOf:(CGPoint)orthoVector toVector:(CGPoint)matchingVector {
     CGPoint tangentVector = CGPointMake(orthoVector.y, -orthoVector.x);
-    if (abs([self vectorAngle:tangentVector] - [self vectorAngle:matchingVector]) > M_PI / 2) {
+    if (abs(ccpAngle(matchingVector, tangentVector)) > M_PI / 2) {
         return CGPointMake(-tangentVector.x, -tangentVector.y);
     }
     return tangentVector;
