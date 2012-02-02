@@ -11,6 +11,7 @@
 @implementation Planet
 
 @synthesize radius = _radius;
+@synthesize nextPlanet = _nextPlanet;
 
 -(id) init {
     if (self = [super init]) {
@@ -18,6 +19,11 @@
         self.gravity = 100;
         self.mass = 100;
         self.orbitalAcceleration = 5;
+        
+        self.aimRadius = (self.minOrbitRadius + self.maxOrbitRadius) / 2;
+        self.attractionDistance = self.maxOrbitRadius * 2;
+        
+        self.nextPlanet = NULL;
     }
     
     return self;

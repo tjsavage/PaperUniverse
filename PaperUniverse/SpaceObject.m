@@ -12,7 +12,7 @@
 
 @synthesize velocity = _velocity, angularVelocity = _angularVelocity, mass = _mass, gravity = _gravity;
 @synthesize maxSpeed = _maxSpeed, minSpeed = _minSpeed;
-@synthesize isStatic = _isStatic;
+@synthesize isStatic = _isStatic, isOrbiting = _isOrbiting;
 
 
 -(id) init {
@@ -24,6 +24,7 @@
         self.mass = 10;
         self.gravity = 0;
         self.isStatic = YES;
+        self.isOrbiting = NO;
     }
     
     return self;

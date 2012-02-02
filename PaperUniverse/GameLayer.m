@@ -53,7 +53,6 @@
         self.currPhysicsManager = self.floatingPhysics;
         
         Planet *firstPlanet = [self.spaceObjectManager addPlanet];
-        [self.spaceObjectManager addPlanet];
         
         self.centerLocation = CGPointMake(0, 0);
         
@@ -93,7 +92,7 @@
     double distanceToCover = ccpDistance(self.spaceObjectManager.player.location,
                                          self.spaceObjectManager.activePlanet.location);
     
-    double finalScale = MAX(MIN(130.0 / distanceToCover, 1), .2);
+    double finalScale = MIN(160.0 / distanceToCover, 1);
      
     self.scale = finalScale;
     self.centerLocation = location;
@@ -113,6 +112,12 @@
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     self.isTouching = NO;
+    
+    if (self.spaceObjectManager.player.isOrbiting) {
+        [self.orbitPhysics ejectObject:self.spaceObjectManager.player fromOrbit:self.spaceObjectManager.activePlanet];
+        Planet *activePlanet = [self.spaceObjectManager advanceActivePlanet];
+        [self addChild:activePlanet.sprite];
+    }
     
     self.currPhysicsManager = self.floatingPhysics;
 }

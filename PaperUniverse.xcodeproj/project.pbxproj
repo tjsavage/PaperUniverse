@@ -21,6 +21,7 @@
 		8A7380BD14D8FBEB0091D6BD /* GravityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380BC14D8FBEB0091D6BD /* GravityObject.m */; };
 		8A7380C314D918080091D6BD /* BackgroundTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380C214D918080091D6BD /* BackgroundTile.m */; };
 		8A7380C614D91A810091D6BD /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7380C514D91A810091D6BD /* BackgroundLayer.m */; };
+		8A7380CA14D9F0820091D6BD /* Uranu300.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7380C914D9F0820091D6BD /* Uranu300.png */; };
 		8A7E104C14D7D6F300DB5BFF /* PlanetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */; };
 		8A7E104E14D7DCE100DB5BFF /* Planet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7E104D14D7DCE100DB5BFF /* Planet1.png */; };
 		8A7E105114D893BB00DB5BFF /* PhysicsManagerOrbiting.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E105014D893BB00DB5BFF /* PhysicsManagerOrbiting.m */; };
@@ -198,6 +199,7 @@
 		8A7380C214D918080091D6BD /* BackgroundTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTile.m; sourceTree = "<group>"; };
 		8A7380C414D91A800091D6BD /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		8A7380C514D91A810091D6BD /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
+		8A7380C914D9F0820091D6BD /* Uranu300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Uranu300.png; sourceTree = "<group>"; };
 		8A7E104A14D7D6F300DB5BFF /* PlanetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetFactory.h; sourceTree = "<group>"; };
 		8A7E104B14D7D6F300DB5BFF /* PlanetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanetFactory.m; sourceTree = "<group>"; };
 		8A7E104D14D7DCE100DB5BFF /* Planet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Planet1.png; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 			children = (
 				8AF8280D14CD581F006449F0 /* Default.png */,
 				8AF8280F14CD581F006449F0 /* fps_images.png */,
+				8A7380C914D9F0820091D6BD /* Uranu300.png */,
 				8AF8281114CD581F006449F0 /* Icon-72.png */,
 				8AF8281314CD581F006449F0 /* Icon-Small-50.png */,
 				8AF8281514CD581F006449F0 /* Icon-Small.png */,
@@ -1117,6 +1120,7 @@
 				8A45941C14D7D0B400D7BF76 /* RocketShip.png in Resources */,
 				8A45942014D7D50D00D7BF76 /* RocketShipSmall.png in Resources */,
 				8A7E104E14D7DCE100DB5BFF /* Planet1.png in Resources */,
+				8A7380CA14D9F0820091D6BD /* Uranu300.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,5 +13,7 @@
 @synthesize maxOrbitRadius = _maxOrbitRadius, minOrbitRadius = _minOrbitRadius;
 @synthesize orbitalAcceleration = _orbitalAcceleration;
 @synthesize gravity = _gravity;
+@synthesize aimRadius = _aimRadius, attractionDistance = _attractionDistance;
+
 
 @end

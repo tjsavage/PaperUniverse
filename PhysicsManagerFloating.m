@@ -8,7 +8,10 @@
 
 #import "PhysicsManagerFloating.h"
 #import "SpaceObject.h"
+#import "SpaceObjectManager.h"
 #import "Spaceship.h"
+#import "GravityObject.h"
+#import "Planet.h"
 
 @implementation PhysicsManagerFloating
 
@@ -17,9 +20,29 @@
     
     if ([object isMemberOfClass:[Spaceship class]]) {
         object.orientation = ccpToAngle(object.velocity);
+        [self guideSpaceObject:object towardGravityObject:objectManager.activePlanet];
     }
     
     object.location = [self vectorAdd:object.location to:[self scalarMultiply:object.velocity by:dt]];
+}
+
+- (void)guideSpaceObject:(SpaceObject *)object towardGravityObject:(GravityObject *)gravityObject {
+    double distance = ccpDistance(object.location, gravityObject.location);
+    
+    if (distance < gravityObject.maxOrbitRadius || distance > gravityObject.attractionDistance) {
+        return;
+    }
+    
+    
+    CGPoint vectorToPlanet = ccpNormalize(ccpSub(gravityObject.location, object.location));
+    CGPoint perpToPlanet = ccpMult(ccpRPerp(vectorToPlanet), gravityObject.minOrbitRadius + 300);
+    CGPoint orbitalPointLocation = ccpSub(gravityObject.location, perpToPlanet);
+    
+    CGPoint directToOrbitPoint = ccpNormalize(ccpSub(orbitalPointLocation, object.location));
+    CGPoint normalizedVelocity = ccpNormalize(object.velocity);
+    double speed = ccpLength(object.velocity);
+    
+    object.velocity = ccpMult(ccpAdd(ccpMult(normalizedVelocity, .9), ccpMult(directToOrbitPoint, .1)), speed);
 }
 
 @end

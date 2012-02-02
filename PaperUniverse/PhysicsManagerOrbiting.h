@@ -15,4 +15,6 @@
 @property (nonatomic, assign) double gravityConstant;
 
 
+-(void) ejectObject:(SpaceObject *)object fromOrbit:(GravityObject *)gravityObject;
+
 @end

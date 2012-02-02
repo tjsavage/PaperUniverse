@@ -11,5 +11,6 @@
 @interface Planet : GravityObject
 
 @property (nonatomic, assign) double radius;
+@property (nonatomic, assign) Planet *nextPlanet;
 
 @end

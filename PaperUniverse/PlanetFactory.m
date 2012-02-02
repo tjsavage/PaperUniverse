@@ -42,11 +42,11 @@ static PlanetFactory *sharedInstance;
 }
 
 - (Planet *)randomPlanet {
-    Planet *planet = [[[Planet alloc] initWithFile:@"Planet1.png"] autorelease];
-    planet.radius = 100;
+    Planet *planet = [[[Planet alloc] initWithFile:@"Uranu300.png"] autorelease];
+    planet.radius = 150;
     
-    planet.maxOrbitRadius = 800;
-    planet.minOrbitRadius = 70;
+    planet.maxOrbitRadius = 500;
+    planet.minOrbitRadius = 100;
     
     return planet;
 }

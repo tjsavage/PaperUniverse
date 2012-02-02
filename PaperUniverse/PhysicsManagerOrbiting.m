@@ -13,9 +13,9 @@
 
 @interface PhysicsManagerOrbiting ()
 
-- (void)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
-- (void)simpleUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
-- (void)pullLockUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
+- (BOOL)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
+- (BOOL)simpleUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
+- (BOOL)pullLockUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject;
 
 @end
 
@@ -37,14 +37,20 @@
     object.location = ccpAdd(object.location, ccpMult(object.velocity, dt));
 }
 
-- (void)updateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
-    [self pullLockUpdateVelocityVector:object withGravityObject:gravityObject];
+-(void) ejectObject:(SpaceObject *)object fromOrbit:(GravityObject *)gravityObject {
+    object.isOrbiting = NO;
+    object.velocity = ccpMult(object.velocity, 1.5);
 }
 
-- (void)simpleUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+
+- (void)updateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+    object.isOrbiting = [self pullLockUpdateVelocityVector:object withGravityObject:gravityObject];
+}
+
+- (BOOL)simpleUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
     double distance = ccpDistance(gravityObject.location, object.location);
     if (distance > gravityObject.maxOrbitRadius){
-        return;
+        return NO;
     }
     
     CGPoint distanceVector = ccpNormalize(ccpSub(object.location, gravityObject.location));
@@ -52,12 +58,13 @@
     
     object.velocity = ccpMult(orbitVelocity, ccpLength(object.velocity));
     
+    return YES;
 }
 
-- (void)pullLockUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+- (BOOL)pullLockUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
     double distance = ccpDistance(gravityObject.location, object.location);
     if (distance > gravityObject.maxOrbitRadius){
-        return;
+        return NO;
     }
     
     CGPoint distanceVector = ccpNormalize(ccpSub(object.location, gravityObject.location));
@@ -70,12 +77,14 @@
     CGPoint newVector = ccpNormalize(ccpAdd(pullVector, newVelocity));
     
     object.velocity = ccpMult(newVector, ccpLength(object.velocity));
+    
+    return YES;
 }
 
-- (void)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
+- (BOOL)gravityUpdateVelocityVector:(SpaceObject *)object withGravityObject:(GravityObject *)gravityObject {
     double distance = ccpDistance(gravityObject.location, object.location);
     if (distance > gravityObject.maxOrbitRadius){
-        return;
+        return NO;
     }
     
     CGPoint distanceVector = ccpNormalize(ccpSub(object.location, gravityObject.location));
@@ -91,6 +100,7 @@
     
     object.velocity = ccpMult(ccpNormalize(newVelocityVectorDirection), speed);
 
+    return YES;
 }
 
 

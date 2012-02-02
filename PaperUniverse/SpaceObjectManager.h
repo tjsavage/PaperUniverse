@@ -23,6 +23,7 @@
 -(id) initWithDefaultPlayer;
 
 -(void) updatePositionsForCenter:(CGPoint)center;
+-(Planet *) advanceActivePlanet;
 -(Planet *) addPlanet;
 -(Planet *) closestPlanetToPlayer;
 

@@ -14,5 +14,7 @@
 @property (nonatomic, assign) double maxOrbitRadius;
 @property (nonatomic, assign) double minOrbitRadius;
 @property (nonatomic, assign) double orbitalAcceleration;
+@property (nonatomic, assign) double aimRadius;
+@property (nonatomic, assign) double attractionDistance;
 
 @end

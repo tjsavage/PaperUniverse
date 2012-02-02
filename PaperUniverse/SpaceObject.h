@@ -15,7 +15,7 @@
 @property (nonatomic, assign) double maxSpeed, minSpeed;
 @property (nonatomic, assign) double angularVelocity;
 @property (nonatomic, assign) double mass, gravity;
-@property (nonatomic, assign) bool isStatic;
+@property (nonatomic, assign) bool isStatic, isOrbiting;
 
 -(id) init;
 

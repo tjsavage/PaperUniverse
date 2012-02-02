@@ -8,6 +8,10 @@
 
 #import "PhysicsManager.h"
 
+@class SpaceObject, GravityObject;
+
 @interface PhysicsManagerFloating : PhysicsManager
+
+-(void) guideSpaceObject:(SpaceObject *)object towardGravityObject:(GravityObject *)gravityObject;
 
 @end

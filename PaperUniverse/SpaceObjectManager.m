@@ -33,7 +33,7 @@
 -(id) initWithDefaultPlayer {
     if (self = [self init]) {
         self.player = [[Spaceship alloc] initWithFile:@"RocketShipSmall.png"];
-        [self.player setLocation:CGPointMake(-540, 0)];
+        [self.player setLocation:CGPointMake(-1040, 0)];
         [self.player setVelocity:CGPointMake(400, 0)];
         
         self.spaceObjects = [NSMutableArray arrayWithObject:self.player];
@@ -48,23 +48,19 @@
     }
 }
 
+-(Planet *) advanceActivePlanet {
+    self.activePlanet = self.activePlanet.nextPlanet;
+    return self.activePlanet;
+}
+
 -(Planet *) activePlanet {
     if (_activePlanet == NULL) {
         _activePlanetIndex = self.closestPlanetToPlayerIndex;
         _activePlanet = [self.planets objectAtIndex:_activePlanetIndex];
-        return _activePlanet;
     }
     
-    if (ccpDistance(_activePlanet.location, self.player.location) > _activePlanet.maxOrbitRadius) {
-        _activePlanetIndex++;
-        if (_activePlanetIndex < self.planets.count) {
-            _activePlanet = [self.planets objectAtIndex:_activePlanetIndex];
-        } else {
-            _activePlanetIndex = self.closestPlanetToPlayerIndex;
-            _activePlanet = [self.planets objectAtIndex:_activePlanetIndex];
-            return _activePlanet;
-        }
-        return _activePlanet;
+    if (_activePlanet.nextPlanet == NULL || _activePlanet.nextPlanet == self.lastPlanet) {
+        [self addPlanet];
     }
     
     return _activePlanet;
@@ -96,11 +92,12 @@
         newPlanet.location = CGPointMake(0, 0);
     } else {
         newPlanet.location = CGPointMake(self.lastPlanet.location.x + 3000, self.lastPlanet.location.y);
+        self.lastPlanet.nextPlanet = newPlanet;
     }
-
     
     [self.spaceObjects addObject:newPlanet];
     [self.planets addObject:newPlanet];
+    
     
     self.lastPlanet = newPlanet;
     
